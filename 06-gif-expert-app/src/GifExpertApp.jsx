@@ -7,7 +7,6 @@ export const GifExpertApp = () => {
     const [categories, setCategories] = useState(['One Punch', 'Dragon Ball Z']);
 
     const onAddCategory = (onNewCategory) => {
-        //Valorant
         if (categories.includes(onNewCategory)) return;
         setCategories([onNewCategory, ...categories])
     }
@@ -22,9 +21,10 @@ export const GifExpertApp = () => {
             <ol>
                 {
                     categories.map(category => (
-                        <GifGrid
-                            key={category}
-                            category={category} />
+                        <li key={category}>
+                            <GifGrid
+                                category={category} />
+                        </li>
                     ))
                 }
             </ol>
