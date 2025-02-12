@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import { TodoApp } from './09-useReducer/TodoApp'
 // import { SimpleForm } from './02-useEfect/SimpleForm'
 // import { CustomHookForm } from './02-useEfect/FormWithCustomHook'
 // import { CounterApp } from './01-useState/CounterApp'
@@ -13,10 +14,11 @@ import './index.css'
 // import { MemoHook } from './06-memos/MemoHook'
 // import { CallbackHook } from './06-memos/CallbackHook'
 
-import { Padre } from './08-tarea-memo/Padre'
+// import { Padre } from './08-tarea-memo/Padre'
+// import './09-useReducer/intro-reducer'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Padre />
+    <TodoApp />
   </StrictMode>
 )
