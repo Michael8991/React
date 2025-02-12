@@ -9,9 +9,6 @@ export const CounterApp = () => {
 
     const { counter1, counter2, counter3 } = state;
 
-    function increment() {
-        setCounter(counter1 => counter1 + 1)
-    }
     return (
         <>
             <h1>Counter 1: {counter1}</h1>
