@@ -1,4 +1,8 @@
-import { types } from "../types/types";
+import { types } from "../types";
+import { TextEncoder, TextDecoder } from 'util';
+
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
 
 export const authReducer = (state = {}, action) => {
     switch (action.type) {
