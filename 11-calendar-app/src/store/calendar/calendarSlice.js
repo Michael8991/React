@@ -1,23 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { addHours } from 'date-fns';
 
-const tempEvent = {
-    _idEvent: new Date().getTime(),
-    title: 'Birthday boss',
-    note: 'Have to buy a cake',
-    start: new Date(),
-    end: addHours(new Date(), 2),
-    bgColor: '#fafafa',
-    user: {
-        _id: 123,
-        name: 'Michael'
-    }
-};
+// const tempEvent = {
+//     _idEvent: new Date().getTime(),
+//     title: 'Birthday boss',
+//     body: 'Have to buy a cake',
+//     startDate: new Date(),
+//     endDate: addHours(new Date(), 2),
+//     bgColor: '#fafafa',
+//     user: {
+//         _id: 123,
+//         name: 'Michael'
+//     }
+// };
 
 export const calendarSlice = createSlice({
     name: 'calendar',
     initialState: {
-        events: [tempEvent],
+        isLoadingEvents: true,
+        events: [],
         activeEvent: null,
     },
     reducers: {
@@ -37,9 +38,24 @@ export const calendarSlice = createSlice({
         },
         onDeleteEvent: (state, { payload }) => {
             state.activeEvent = null;
-            state.events = state.events.filter(events => events._idEvent !== payload._idEvent)
+            state.events = state.events.filter(events => events._id !== payload._id)
+        },
+        onLoadEvents: (state, { payload = [] }) => {
+            state.isLoadingEvents = false
+            // state.initialState.events = payload
+            payload.forEach(event => {
+                const exists = state.events.some(dbEvent => dbEvent._id === event._id)
+                if (!exists) {
+                    state.events.push(event)
+                }
+            });
+        },
+        onLogoutCalendar: (state) => {
+            state.isLoadingEvents = true;
+            state.events = [];
+            state.activeEvent = null;
         }
     }
 });
 
-export const { onSetActiveEvent, onAddNewEvent, onUpdateEvent, onDeleteEvent } = calendarSlice.actions;
+export const { onSetActiveEvent, onAddNewEvent, onUpdateEvent, onDeleteEvent, onLoadEvents, onLogoutCalendar } = calendarSlice.actions;

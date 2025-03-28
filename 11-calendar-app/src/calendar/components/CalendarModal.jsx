@@ -35,9 +35,9 @@ export const CalendarModal = () => {
 
     const [formValues, setFormValues] = useState({
         title: '',
-        note: '',
-        start: new Date(),
-        end: addHours(new Date(), 2)
+        body: '',
+        startDate: new Date(),
+        endDate: addHours(new Date(), 2)
     })
 
     const titleClass = useMemo(() => {
@@ -75,7 +75,7 @@ export const CalendarModal = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
         setFormSumbited(true)
-        const difference = differenceInSeconds(formValues.end, formValues.start)
+        const difference = differenceInSeconds(formValues.endDate, formValues.startDate)
         if (isNaN(difference) || difference <= 0) {
             Swal.fire('Fechas incorrectas', 'Revisar las fechas ingresadas', 'error')
             return;
@@ -109,8 +109,9 @@ export const CalendarModal = () => {
                     <DatePicker
                         locale="es"
                         minDate={Date()}
-                        selected={formValues.start}
-                        onChange={(event) => onDateChanged(event, 'start')}
+                        name='startDate'
+                        selected={formValues.startDate}
+                        onChange={(event) => onDateChanged(event, 'startDate')}
                         className="form-control"
                         dateFormat="Pp"
                         showTimeSelect
@@ -122,9 +123,10 @@ export const CalendarModal = () => {
                     <label>Fecha y hora fin</label>
                     <DatePicker
                         locale="es"
-                        minDate={formValues.start}
-                        selected={formValues.end}
-                        onChange={(event) => onDateChanged(event, 'end')}
+                        name='endDate'
+                        minDate={formValues.startDate}
+                        selected={formValues.endDate}
+                        onChange={(event) => onDateChanged(event, 'endDate')}
                         className='form-control'
                         dateFormat="Pp"
                         showTimeSelect
@@ -153,8 +155,8 @@ export const CalendarModal = () => {
                         className="form-control"
                         placeholder="Notas"
                         rows="5"
-                        name="note"
-                        value={formValues.note}
+                        name="body"
+                        value={formValues.body}
                         onChange={onInputChange}
                     ></textarea>
                     <small id="emailHelp" className="form-text text-muted">Información adicional</small>

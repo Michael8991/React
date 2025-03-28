@@ -10,12 +10,14 @@ const createEvent = async (req, res = response) => {
             body,
             startDate,
             endDate,
-            userID: req.uid
+            userID: req.uid,
+            userName: req.name
         });
         await event.save();
         res.status(200).json({
             ok: true,
             userID: req.uid,
+            userName: req.name,
             uid: event.id,
             title,
             body,

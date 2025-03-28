@@ -6,6 +6,10 @@ const EventSchema = Schema({
         ref: 'User', // Debe coincidir con el nombre del modelo del usuario
         required: true
     },
+    userName: {  // Nuevo campo para almacenar el nombre directamente
+        type: String,
+        required: true
+    },
     title: {
         type: String,
         require: true

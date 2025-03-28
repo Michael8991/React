@@ -1,11 +1,11 @@
 
 export const CalendarEvent = ({ event }) => {
 
-    const { title, user } = event;
+    const { title, userName = 'Desconocido' } = event;
     return (
         <>
             <p>{title}</p>
-            <p>- {user.name}</p>
+            <p>- {userName}</p>
         </>
     )
 }
